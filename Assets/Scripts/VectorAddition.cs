@@ -32,5 +32,11 @@ public class VectorAddition : MonoBehaviour
         {
             Debug.DrawLine(origin, rPlusB, Color.magenta);
         }
+
+        float sizeOfRPlusB = Mathf.Sqrt(rPlusB.x * rPlusB.x + rPlusB.y * rPlusB.y);
+        Debug.Log(sizeOfRPlusB);
+        Debug.DrawLine(origin, rPlusB, Color.magenta);
+
+        Vector2 fromRtoB = bTransform.position - rTransform.position;
     }
 }
