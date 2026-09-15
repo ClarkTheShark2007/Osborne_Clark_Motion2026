@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Vector2 bombTrailSpacing;
     public float distanceSpawn;
     public float warpDriveDistance;
+    public float asteroidDecetionRange;
 
 
     void Update()
@@ -39,7 +40,11 @@ public class Player : MonoBehaviour
             //Vector2 direction = (enemyTransform.position - playersTransform);
             //Vector2.Distance(enemyTransform.position, transform.position);
             warpDrive();
-            
+        }
+
+        if(Keyboard.current.rKey.isPressed)
+        {
+            detectAsteroids(playersTransform);
         }
     }
 
@@ -93,5 +98,23 @@ public class Player : MonoBehaviour
     {
         transform.position = Vector3.Lerp (transform.position, enemyTransform.position, warpDriveDistance);
         //transform.position += Vector3.Normalize(direction);
+    }
+
+    void detectAsteroids(Vector3 playerPos)
+    {
+        for (int i = 0; i < asteroidTransforms.Count; i++)
+        {
+            //Vector2.Distance(enemyTransform.position, transform.position);
+            if(Vector2.Distance(playerPos, asteroidTransforms[i].position) <= asteroidDecetionRange)
+            {
+                //Debug.DrawLine(playerPos, asteroidTransforms[i].position , Color.green);
+
+                Vector2 directionOfAsteroid = asteroidTransforms[i].position - playerPos;
+                Vector2 endPostion = (Vector2) playerPos + (directionOfAsteroid * 2.5f);
+
+                Debug.DrawLine(playerPos, endPostion, Color.green);
+
+            }
+        }
     }
 }
