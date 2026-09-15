@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Transform bombsTransform;
     public float numberOfBombs;
     public Vector2 bombTrailSpacing;
+    public float distanceSpawn;
 
 
     void Update()
@@ -25,6 +26,11 @@ public class Player : MonoBehaviour
         if(Keyboard.current.tKey.wasPressedThisFrame)
         {
             SpawnBombTrail(playersTransform);
+        }
+
+        if(Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            spawnCornerBomb(playersTransform);
         }
 
         if(Keyboard.current.wKey.wasPressedThisFrame)
@@ -49,6 +55,36 @@ public class Player : MonoBehaviour
             GameObject bomb = Instantiate(bombPrefab);
             bomb.transform.position = playerPostion - (Vector3) (bombTrailSpacing * i);
             Debug.Log(bombPrefab.transform.position);
+        }
+    }
+
+    void spawnCornerBomb(Vector3 playerPos)
+    {
+        int cornerDirection = Random.Range(0, 4);
+
+        if(cornerDirection == 0)
+        {
+            GameObject bomb = Instantiate(bombPrefab);
+            Vector2 tlBombPos = new Vector2 (playerPos.x - distanceSpawn, playerPos.y + distanceSpawn);
+            bomb.transform.position = tlBombPos;
+        }
+        else if(cornerDirection == 1)
+        {
+            GameObject bomb = Instantiate(bombPrefab);
+            Vector2 blBombPos = new Vector2 (playerPos.x - distanceSpawn, playerPos.y - distanceSpawn);
+            bomb.transform.position = blBombPos;
+        }
+        else if(cornerDirection == 2)
+        {
+            GameObject bomb = Instantiate(bombPrefab);
+            Vector2 trBombPos = new Vector2 (playerPos.x + distanceSpawn, playerPos.y + distanceSpawn);
+            bomb.transform.position = trBombPos;
+        }
+        else if(cornerDirection == 3)
+        {
+            GameObject bomb = Instantiate(bombPrefab);
+            Vector2 brBombPos = new Vector2 (playerPos.x + distanceSpawn, playerPos.y - distanceSpawn);
+            bomb.transform.position = brBombPos;
         }
     }
 
