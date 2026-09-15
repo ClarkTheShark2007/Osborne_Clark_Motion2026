@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float numberOfBombs;
     public Vector2 bombTrailSpacing;
     public float distanceSpawn;
+    public float warpDriveDistance;
 
 
     void Update()
@@ -35,9 +36,9 @@ public class Player : MonoBehaviour
 
         if(Keyboard.current.wKey.wasPressedThisFrame)
         {
-            Vector2 direction = (enemyTransform.position - playersTransform);
+            //Vector2 direction = (enemyTransform.position - playersTransform);
             //Vector2.Distance(enemyTransform.position, transform.position);
-            warpDrive(direction);
+            warpDrive();
             
         }
     }
@@ -88,8 +89,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    void warpDrive(Vector3 direction)
+    void warpDrive()
     {
-        transform.position += Vector3.Normalize(direction);
+        transform.position = Vector3.Lerp (transform.position, enemyTransform.position, warpDriveDistance);
+        //transform.position += Vector3.Normalize(direction);
     }
 }
