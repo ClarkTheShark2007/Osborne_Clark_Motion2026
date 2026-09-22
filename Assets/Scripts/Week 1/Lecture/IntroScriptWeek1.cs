@@ -3,10 +3,9 @@ using UnityEngine;
 public class IntroScriptWeek1 : MonoBehaviour
 {
 
-    int x = 0;
-    int y = 1;
-
-    float health = 0.5f;
+    //int x = 0;
+    //int y = 1;
+    //float health = 0.5f;
 
     Vector2 originPosition = new Vector2(0,0);
     Vector2 currentPosistion = new Vector2(3, -2);

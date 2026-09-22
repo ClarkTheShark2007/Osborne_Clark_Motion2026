@@ -14,28 +14,18 @@ public class Week3Lecture : MonoBehaviour
     public float currentAcceleration;
     public float deacceleration;
     float maxSpeed = 1.5f;
-    Vector2 topLeft;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentAcceleration = maxSpeed / accelerationTime;
         deacceleration = maxSpeed / deaccelerationTime;
-
-
-        topLeft = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width * -1, Screen.height)); // Top Left
-        //transform.position = transform.position + Vector3.right;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         PlayerMovement();
-
-        if (transform.position.x <= topLeft.x)
-        {
-            transform.position = new Vector2(topLeft.x, transform.position.y);
-        }
     }
 
     void PlayerMovement()
