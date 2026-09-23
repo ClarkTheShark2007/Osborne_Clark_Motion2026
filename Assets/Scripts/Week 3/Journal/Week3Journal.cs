@@ -24,7 +24,11 @@ public class Week3Journal : MonoBehaviour
         playerMovement();
         if(!Keyboard.current.anyKey.isPressed)
         {
-            velocity -= velocity * timeToCompleteStop * Time.deltaTime;
+            velocity -= velocity.normalized * timeToCompleteStop * Time.deltaTime;
+            if(velocity.magnitude <= 0.001f)
+            {
+                velocity = Vector3.zero;
+            }
         }
     }
 
