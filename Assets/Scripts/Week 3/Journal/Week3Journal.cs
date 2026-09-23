@@ -7,18 +7,25 @@ public class Week3Journal : MonoBehaviour
     public float maxSpeed = 3;
     public Vector3 velocity;
     public float accelerationReacher; //How long it takes to reach targeted max speed
+    public float decelrationReacher; //How long it takes to reach targeted max speed
     [SerializeField] float timeToReachMaxAcceleration;
+    [SerializeField] float timeToCompleteStop;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timeToReachMaxAcceleration = maxSpeed / accelerationReacher;
+        timeToCompleteStop = maxSpeed / decelrationReacher;
     }
 
     // Update is called once per frame
     void Update()
     {
         playerMovement();
+        if(!Keyboard.current.anyKey.isPressed)
+        {
+            velocity -= velocity * timeToCompleteStop * Time.deltaTime;
+        }
     }
 
     void playerMovement()

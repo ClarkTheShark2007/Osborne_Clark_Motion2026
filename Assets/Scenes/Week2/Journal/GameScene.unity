@@ -2495,7 +2495,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1742679311805458, guid: abc125f00ae369940b2c5c0275186637, type: 3}
   m_PrefabInstance: {fileID: 2030902519}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1609450066
+--- !u!114 &1609450069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2504,15 +2504,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1609450065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89fc6c0871ccfd44bf930c08babc028, type: 3}
+  m_Script: {fileID: 11500000, guid: 177763f1feb767c469e413e19e807fd5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Week3Lecture
-  currentVelocity: {x: 0, y: 0, z: 0}
-  speed: 1
-  accelerationTime: 2
-  deaccelerationTime: 0
-  currentAcceleration: 0
-  deacceleration: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Week3Journal
+  maxSpeed: 3
+  velocity: {x: 0, y: 0, z: 0}
+  accelerationReacher: 2
+  decelrationReacher: 2
+  timeToReachMaxAcceleration: 0
+  timeToCompleteStop: 0
 --- !u!1 &1615314663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,7 +3419,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1742679311805458, guid: abc125f00ae369940b2c5c0275186637, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1609450066}
+      addedObject: {fileID: 1609450069}
   m_SourcePrefab: {fileID: 100100000, guid: abc125f00ae369940b2c5c0275186637, type: 3}
 --- !u!1001 &2097146127
 PrefabInstance:
