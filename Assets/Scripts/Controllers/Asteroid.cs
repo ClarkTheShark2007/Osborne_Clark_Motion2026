@@ -15,6 +15,8 @@ public class Asteroid : MonoBehaviour
     {
         arivalLocation = new Vector2(transform.position.x + Random.Range(-maxFloatDistance, maxFloatDistance), transform.position.y + Random.Range(-maxFloatDistance, maxFloatDistance));
         //movementDirection = Vector2.Distance(arivalLocation, transform.position);
+
+        //Normalzie and then times the maxfloatdisatnce to get a range between the area, this creates a circle
     }
 
     // Update is called once per frame
@@ -26,9 +28,11 @@ public class Asteroid : MonoBehaviour
 
         //transform.position += Vector3.Lerp(transform.position, arivalLocation, moveSpeed) * Time.deltaTime;
 
-        if (transform.position.magnitude < maxFloatDistance)
-        {
-            arivalLocation = new Vector2(transform.position.x + maxFloatDistance, transform.position.y + maxFloatDistance);
-        }
+        //if (transform.position.magnitude < maxFloatDistance)
+        //{
+        //    arivalLocation = new Vector2(transform.position.x + maxFloatDistance, transform.position.y + maxFloatDistance);
+        //}
+
+        //to move use (arivalLocation - transformpostion).normalize [This gets the direction to move in and makes it one] * moveSpeed * time.deltaTime. THis also works for the start
     }
 }
