@@ -466,6 +466,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 462add3d0f7c62a4682e9c053b00ec93, type: 3}
+--- !u!1 &319693549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1409900303673908, guid: e3900e4d87ee29c43ad1d9098b51432c, type: 3}
+  m_PrefabInstance: {fileID: 925799359}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &335762729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4194190890010494449, guid: 462add3d0f7c62a4682e9c053b00ec93, type: 3}
@@ -1139,6 +1144,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4504276444959460, guid: e3900e4d87ee29c43ad1d9098b51432c, type: 3}
   m_PrefabInstance: {fileID: 925799359}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &892270336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 319693549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df063590a0681244fb9cf483465af8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMotion
+  player: {fileID: 1609450071}
+  randomLocation: {x: 0, y: 0}
+  maxDistanceForRandomPosition: 3
+  distanceToPlayer: 6
+  maxSpeedSearching: 3
+  maxSpeedChasing: 2.3
+  resetSearchTime: 3
+  velcoity: {x: 0, y: 0, z: 0}
 --- !u!1001 &899560472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1337,7 +1362,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1409900303673908, guid: e3900e4d87ee29c43ad1d9098b51432c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 892270336}
   m_SourcePrefab: {fileID: 100100000, guid: e3900e4d87ee29c43ad1d9098b51432c, type: 3}
 --- !u!4 &929220948 stripped
 Transform:
@@ -2560,6 +2588,9 @@ MonoBehaviour:
   - {fileID: 426582573}
   - {fileID: 2257695664884323191}
   drawingTime: 0.5
+  starPos: {x: 0, y: 0}
+  i: 0
+  movementDirection: {x: 0, y: 0}
 --- !u!4 &1573207886
 Transform:
   m_ObjectHideFlags: 0
@@ -2605,6 +2636,11 @@ MonoBehaviour:
   decelrationReacher: 1
   timeToReachMaxAcceleration: 0
   timeToCompleteStop: 0
+--- !u!4 &1609450071 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4408196811525658, guid: abc125f00ae369940b2c5c0275186637, type: 3}
+  m_PrefabInstance: {fileID: 2030902519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1615314663
 GameObject:
   m_ObjectHideFlags: 0
