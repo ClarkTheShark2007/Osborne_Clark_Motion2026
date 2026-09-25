@@ -18,7 +18,7 @@ public class Stars : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 movementDirection = (starTransforms[i].position - (Vector3) starPos).normalized * Time.deltaTime;
+        Vector2 movementDirection = (starTransforms[i].position - (Vector3) starPos).normalized * drawingTime * Time.deltaTime;
         starPos += movementDirection;
 
         if(Vector2.Distance(starPos, starTransforms[i].position) <= 0.1f)
