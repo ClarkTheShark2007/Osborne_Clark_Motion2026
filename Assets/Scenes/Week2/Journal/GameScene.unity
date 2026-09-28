@@ -2641,6 +2641,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4408196811525658, guid: abc125f00ae369940b2c5c0275186637, type: 3}
   m_PrefabInstance: {fileID: 2030902519}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1609450073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609450065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b3966280d482d4bb7c0c0753bc2f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Week4Journal
+  Radius: 3
+  enemy: {fileID: 0}
 --- !u!1 &1615314663
 GameObject:
   m_ObjectHideFlags: 0
@@ -3560,6 +3574,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1742679311805458, guid: abc125f00ae369940b2c5c0275186637, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1609450069}
+    - targetCorrespondingSourceObject: {fileID: 1742679311805458, guid: abc125f00ae369940b2c5c0275186637, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1609450073}
   m_SourcePrefab: {fileID: 100100000, guid: abc125f00ae369940b2c5c0275186637, type: 3}
 --- !u!1001 &2097146127
 PrefabInstance:
