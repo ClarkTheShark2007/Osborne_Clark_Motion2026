@@ -2653,8 +2653,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b3966280d482d4bb7c0c0753bc2f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Week4Journal
+  numberOfCirclePoints: 8
+  numberOfPowerUps: 4
   Radius: 3
-  enemy: {fileID: 0}
+  enemy: {fileID: 892270334}
+  powerUp: {fileID: 1567431237259788, guid: 03444c0c59102ba46bb1a8b5a1b0a810, type: 3}
 --- !u!1 &1615314663
 GameObject:
   m_ObjectHideFlags: 0
