@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.LightTransport;
 
 public class VectorMath : MonoBehaviour
 {
@@ -54,5 +55,18 @@ public class VectorMath : MonoBehaviour
          endPoint = centerPoint + new Vector2(size, -size);
 
         Debug.DrawLine(startPoint, endPoint, colour, duration);
+    }
+
+    //Unitys zero starts uup
+    public static float VectorToAngle(Vector2 point)
+    {
+        float angle = Mathf.Atan2(point.y, point.x) * Mathf.Rad2Deg;
+        return angle - 90f;
+    }
+
+    public static float VectorDot(Vector3 a, Vector3 b)
+    {
+        float dotProduct = a.x * b.x + a.y * b.y;
+        return dotProduct;
     }
 }
