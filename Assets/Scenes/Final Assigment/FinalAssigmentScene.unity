@@ -395,11 +395,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mod_Player
   maxSpeed: 3
+  rollSpeed: 45
   velocity: {x: 0, y: 0, z: 0}
   accelerationReacher: 1
   decelrationReacher: 2
   timeToReachMaxAcceleration: 0
   timeToCompleteStop: 0
+  isRolling: 0
+  totalTimeForCompleteRoll: 0
+  amountOfRolls: 1
 --- !u!1 &1821658492
 GameObject:
   m_ObjectHideFlags: 0
