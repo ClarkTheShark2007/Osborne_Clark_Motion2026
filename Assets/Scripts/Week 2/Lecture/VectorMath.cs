@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.LightTransport;
 
 public class VectorMath : MonoBehaviour
 {
@@ -68,5 +67,10 @@ public class VectorMath : MonoBehaviour
     {
         float dotProduct = a.x * b.x + a.y * b.y;
         return dotProduct;
+    }
+
+    public static void RotateObject(GameObject rotatedObject, Vector3 rotationVector)
+    {
+        rotatedObject.transform.eulerAngles = rotationVector;
     }
 }
