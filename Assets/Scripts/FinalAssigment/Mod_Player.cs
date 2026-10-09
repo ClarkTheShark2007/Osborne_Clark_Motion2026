@@ -10,6 +10,7 @@ public class Mod_Player : MonoBehaviour
     public Vector3 velocity;
     public float accelerationReacher; //How long it takes to reach targeted max speed
     public float decelrationReacher; //How long it takes to reach targeted max speed
+    public bool isBeingThrowmed;
     [SerializeField] float timeToReachMaxAcceleration;
     [SerializeField] float timeToCompleteStop;
     [SerializeField] bool isRolling;
@@ -66,7 +67,7 @@ public class Mod_Player : MonoBehaviour
     }
     void playerMovement()
     {
-        if(!isRolling)
+{        if(!isRolling)
         {        
             direction = Vector3.zero;
 
@@ -92,12 +93,12 @@ public class Mod_Player : MonoBehaviour
 
         transform.position = transform.position + velocity * Time.deltaTime;
 
-        if(velocity.magnitude >= maxSpeed)
+        if(velocity.magnitude >= maxSpeed && !isBeingThrowmed)
         {
             velocity = velocity.normalized * maxSpeed;
         }
 
-        barrelRoll();
+        barrelRoll();}
 
 
     }

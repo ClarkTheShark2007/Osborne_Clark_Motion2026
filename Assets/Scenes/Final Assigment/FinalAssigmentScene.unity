@@ -296,11 +296,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Alien
   player: {fileID: 1609450065}
-  searchChargeTimer: 3
-  maxSpeed: 5
+  searchChargeTimer: 1
+  maxSpeed: 6
   totalSearchTime: 3.5
   distanceForAttack: 5
   attackSpeed: 4
+  throwRadius: 7
+  throwSpeed: 7
   totalMovementTime: 0
   attackPos: {x: 0, y: 0}
   attackVelocity: {x: 0, y: 0}
