@@ -297,12 +297,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Alien
   player: {fileID: 1609450065}
   searchChargeTimer: 3
-  maxSpeed: 4
-  totalSearchTime: 3
-  distanceForAttack: 4
+  maxSpeed: 5
+  totalSearchTime: 3.5
+  distanceForAttack: 5
+  attackSpeed: 4
   totalMovementTime: 0
-  velocity: {x: 0, y: 0}
-  playerPos: {x: 0, y: 0}
+  attackPos: {x: 0, y: 0}
+  attackVelocity: {x: 0, y: 0}
 --- !u!212 &1435017294
 SpriteRenderer:
   serializedVersion: 2

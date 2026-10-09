@@ -41,22 +41,22 @@ public class Mod_Player : MonoBehaviour
 
     void barrelRoll()
     {
-        Debug.Log(direction);
-        if(Keyboard.current.shiftKey.wasPressedThisFrame)
-        {
-            if(direction.x == 1 || direction.x == -1)
-            {
-                isRolling = true;
+        // Debug.Log(direction);
+        // if(Keyboard.current.shiftKey.wasPressedThisFrame)
+        // {
+        //     if(direction.x == 1 || direction.x == -1)
+        //     {
+        //         isRolling = true;
 
-            }
-        }
+        //     }
+        // }
 
-        if(isRolling)
-        {
-            transform.eulerAngles += new Vector3(0, direction.x, 0) * Time.deltaTime * rollSpeed;
-            StartCoroutine(rolling());
+        // if(isRolling)
+        // {
+        //     transform.eulerAngles += new Vector3(0, direction.x, 0) * Time.deltaTime * rollSpeed;
+        //     StartCoroutine(rolling());
 
-        }
+        // }
     }
 
     IEnumerator rolling()

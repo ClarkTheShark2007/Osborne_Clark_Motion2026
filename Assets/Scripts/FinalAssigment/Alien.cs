@@ -7,20 +7,27 @@ public class Alien : MonoBehaviour
     public float maxSpeed;
     public float totalSearchTime;
     public float distanceForAttack;
+    public float attackSpeed;
     [SerializeField] float totalMovementTime;
     float t;
-    public Vector2 velocity;
-    public Vector2 playerPos;
+    Vector2 velocity;
+    Vector2 playerPos;
+    public Vector2 attackPos;
+    public Vector2 attackVelocity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         totalMovementTime = maxSpeed / totalSearchTime;
+        attackPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //If timer is ready, get player postion and set velocity to max to the alien charges in that direction
+        Debug.DrawLine(transform.position, attackPos, Color.yellow);
+        Mod_Player playerScript = player.GetComponent<Mod_Player>();
+
+        //If timer is ready, set velocity to max to the alien charges in that direction
         if(t >= searchChargeTimer)
         {
             playerPos = player.transform.position;
@@ -30,13 +37,30 @@ public class Alien : MonoBehaviour
 
         if(Vector2.Distance(transform.position, player.transform.position) <= distanceForAttack)
         {
-            velocity = Vector3.zero;
+            playerPos = player.transform.position;
+
+            t = 0;
             Debug.Log("Atackking the player!");
+            attackPos += (playerPos - attackPos).normalized * attackSpeed * Time.deltaTime;
+
+            if(Vector2.Distance(attackPos, playerPos) <= 0.1f)
+            {
+                attackPos = playerPos;
+                playerScript.velocity = Vector3.zero;
+                player.transform.position += (Vector3) ((Vector2)transform.position - playerPos).normalized * 2f * Time.deltaTime;
+            }
+
         } else
         {
-            transform.position = (Vector2) transform.position + velocity * Time.deltaTime;
+            attackPos += ((Vector2) transform.position - attackPos).normalized * attackSpeed * Time.deltaTime;
+            
+            if(Vector2.Distance(attackPos, transform.position) <= 0.5f)
+            {
+                attackPos = transform.position;
+            }
         }
 
+        transform.position = (Vector2) transform.position + velocity * Time.deltaTime;
 
         //Makes velocity decelerate and makes it 0 once its close enough to it
         velocity -= velocity.normalized * totalMovementTime * Time.deltaTime;
@@ -44,7 +68,6 @@ public class Alien : MonoBehaviour
         {
             velocity = Vector3.zero;
         }
-
 
         t += Time.deltaTime;
     }
