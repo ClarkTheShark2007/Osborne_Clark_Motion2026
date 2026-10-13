@@ -68,8 +68,9 @@ public class Alien : MonoBehaviour
                 
                 if(Vector2.Distance(playerPos, transform.position) <= 0.1f)
                 {
-                    playerScript.isBeingThrowmed = true;
+                    playerScript.t = 0;
                     beingThrowned = true;
+                    playerScript.isBeingThrowned = true;
                     playerScript.velocity = ((Vector3)throwPostion - player.transform.position).normalized * throwSpeed;
                 }
             }
@@ -99,14 +100,11 @@ public class Alien : MonoBehaviour
     {
         if(beingThrowned)
         {
-            //playerScript.velocity = playerScript.velocity + ((Vector3)throwPostion - player.transform.position).normalized * Time.deltaTime;
-            //player.transform.position += ((Vector3)throwPostion - player.transform.position) * 2f * Time.deltaTime;
 
-
-            if(Vector2.Distance(player.transform.position, transform.position) >= throwRadius +3f)
+            if(playerScript.isBeingThrowned == false)
             {
                 beingThrowned = false;
-                playerScript.isBeingThrowmed = false;
+                //playerScript.isBeingThrowned = false;
             }
         }
     }

@@ -10,12 +10,16 @@ public class Mod_Player : MonoBehaviour
     public Vector3 velocity;
     public float accelerationReacher; //How long it takes to reach targeted max speed
     public float decelrationReacher; //How long it takes to reach targeted max speed
-    public bool isBeingThrowmed;
+    public bool isBeingThrowned;
     [SerializeField] float timeToReachMaxAcceleration;
     [SerializeField] float timeToCompleteStop;
     [SerializeField] bool isRolling;
     [SerializeField] float totalTimeForCompleteRoll;
     public int amountOfRolls;
+    
+
+    public float rollsPerSeccond = 0.5f;
+    public float t;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,6 +42,24 @@ public class Mod_Player : MonoBehaviour
                 velocity = Vector3.zero;
             }
         }
+
+        if(isBeingThrowned)
+        {
+            t += Time.deltaTime * rollsPerSeccond;
+
+            if(t >= amountOfRolls)
+            {
+                t = amountOfRolls;
+            }
+
+            transform.eulerAngles = new Vector3(0,0,t*360);
+
+            if(t >= amountOfRolls)
+            {
+                isBeingThrowned = false;
+                transform.eulerAngles = new Vector3(0,0,0);
+            }
+        }
     }
 
     void barrelRoll()
@@ -51,19 +73,6 @@ public class Mod_Player : MonoBehaviour
 
         //     }
         // }
-
-        // if(isRolling)
-        // {
-        //     transform.eulerAngles += new Vector3(0, direction.x, 0) * Time.deltaTime * rollSpeed;
-        //     StartCoroutine(rolling());
-
-        // }
-    }
-
-    IEnumerator rolling()
-    {
-        yield return new WaitForSeconds(totalTimeForCompleteRoll);
-        isRolling = false;
     }
     void playerMovement()
     {
@@ -93,7 +102,7 @@ public class Mod_Player : MonoBehaviour
 
         transform.position = transform.position + velocity * Time.deltaTime;
 
-        if(velocity.magnitude >= maxSpeed && !isBeingThrowmed)
+        if(velocity.magnitude >= maxSpeed && !isBeingThrowned)
         {
             velocity = velocity.normalized * maxSpeed;
         }
@@ -103,3 +112,4 @@ public class Mod_Player : MonoBehaviour
 
     }
 }
+
