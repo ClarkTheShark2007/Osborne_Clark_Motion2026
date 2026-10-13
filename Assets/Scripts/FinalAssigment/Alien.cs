@@ -3,39 +3,45 @@ using UnityEngine;
 
 public class Alien : MonoBehaviour
 {
-    public GameObject player;
+    //Searching State Varibles
     public float searchChargeTimer;
     public float maxSpeed;
     public float totalSearchTime;
+    [SerializeField] float totalMovementTime;
+    Vector2 velocity;
+
+    //Attacking State Varibles
     public float distanceForAttack;
     public float attackSpeed;
-    public float throwRadius;
-    public float throwSpeed;
-    [SerializeField] float totalMovementTime;
-    float t;
-    Vector2 velocity;
     Vector2 playerPos;
     public Vector2 attackPos;
-    public Vector2 attackVelocity;
+
+    //Throwing State Varibles
+    public float throwRadius;
+    public float throwSpeed;
     Vector2 throwPostion;
     bool beingThrowned;
+
+    //Player Varibles
+    public GameObject player;
     Mod_Player playerScript;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    float t;
+
     void Start()
     {
+        //Setup for mentioned Varibles above
         totalMovementTime = maxSpeed / totalSearchTime;
         attackPos = transform.position;
         playerScript = player.GetComponent<Mod_Player>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         throwPlayer();
         Debug.DrawLine(transform.position, attackPos, Color.yellow);
 
-        //If timer is ready, set velocity to max to the alien charges in that direction
+        //If timer is ready, set velocity to max to the alien charges in that direction. Also sets a new random throw postion
         if(t >= searchChargeTimer)
         {
             int angle = Random.Range(0, 361);
@@ -45,11 +51,12 @@ public class Alien : MonoBehaviour
             t = 0;
         }
 
+        // If the player distance is close enough to trigger attack state, then switch
         if(Vector2.Distance(transform.position, player.transform.position) <= distanceForAttack)
         {
             playerPos = player.transform.position;
-
             t = 0;
+
             Debug.Log("Atackking the player!");
             if (!beingThrowned)
             {
@@ -59,7 +66,7 @@ public class Alien : MonoBehaviour
                 attackPos = transform.position;
             }
 
-
+            //If the player distance is touching the projected line AND is not rolling, then stop all player movement and bring close to me
             if(Vector2.Distance(attackPos, playerPos) <= 0.1f && !playerScript.isRolling)
             {
                 attackPos = playerPos;
@@ -67,6 +74,7 @@ public class Alien : MonoBehaviour
                 playerScript.canRoll = false;
                 player.transform.position += (Vector3) ((Vector2)transform.position - playerPos).normalized * 2f * Time.deltaTime;
                 
+                //If the player distance is touching me, throw player in direction set with max with my throwspeed
                 if(Vector2.Distance(playerPos, transform.position) <= 0.1f)
                 {
                     beingThrowned = true;
@@ -75,7 +83,9 @@ public class Alien : MonoBehaviour
                 }
             }
 
-        } else
+        } 
+        //Move attack to me and if its close enough to me, make it reflect my transform
+        else
         {
             attackPos += ((Vector2)transform.position - attackPos).normalized * attackSpeed * Time.deltaTime;
             if(Vector2.Distance(attackPos, transform.position) <= 0.5f)
@@ -100,9 +110,11 @@ public class Alien : MonoBehaviour
     {
         if(beingThrowned)
         {
+            // Sound effects can be put here
 
             if(playerScript.isBeingThrowned == false)
             {
+                //Reset my movement and allow player to roll again
                 beingThrowned = false;
                 playerScript.canRoll = true;
             }
