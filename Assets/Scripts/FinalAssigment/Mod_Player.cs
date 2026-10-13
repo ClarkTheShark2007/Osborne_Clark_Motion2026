@@ -6,19 +6,19 @@ public class Mod_Player : MonoBehaviour
 {
     Vector3 direction;
     public float maxSpeed = 3;
-    public float rollSpeed = 45;
+    public float barrelRollSpeed = 6f;
     public Vector3 velocity;
     public float accelerationReacher; //How long it takes to reach targeted max speed
     public float decelrationReacher; //How long it takes to reach targeted max speed
     public bool isBeingThrowned;
     [SerializeField] float timeToReachMaxAcceleration;
     [SerializeField] float timeToCompleteStop;
-    [SerializeField] bool isRolling;
-    [SerializeField] float totalTimeForCompleteRoll;
-    public int amountOfRolls;
-    
-
-    public float rollsPerSeccond = 0.5f;
+    public bool isRolling;
+    public bool canRoll = true;
+    public int amountOfSpins;
+    public int amountOfBarrelRolls;
+    public float spinsPerSeccond = 0.5f;
+    public float rollsPerSeccond;
     public float t;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -26,7 +26,6 @@ public class Mod_Player : MonoBehaviour
     {
         timeToReachMaxAcceleration = maxSpeed / accelerationReacher;
         timeToCompleteStop = maxSpeed / decelrationReacher;
-        totalTimeForCompleteRoll = (360/rollSpeed) * amountOfRolls;
     }
 
     // Update is called once per frame
@@ -45,34 +44,47 @@ public class Mod_Player : MonoBehaviour
 
         if(isBeingThrowned)
         {
-            t += Time.deltaTime * rollsPerSeccond;
+            t += Time.deltaTime * spinsPerSeccond;
 
-            if(t >= amountOfRolls)
+            if(t >= amountOfSpins)
             {
-                t = amountOfRolls;
+                t = amountOfSpins;
             }
-
             transform.eulerAngles = new Vector3(0,0,t*360);
 
-            if(t >= amountOfRolls)
+            if(t >= amountOfSpins)
             {
                 isBeingThrowned = false;
                 transform.eulerAngles = new Vector3(0,0,0);
+                t = 0;
             }
         }
+
+        barrelRoll();
     }
 
     void barrelRoll()
     {
-        // Debug.Log(direction);
-        // if(Keyboard.current.shiftKey.wasPressedThisFrame)
-        // {
-        //     if(direction.x == 1 || direction.x == -1)
-        //     {
-        //         isRolling = true;
+        if(isRolling == true)
+        {
+            velocity = new Vector3 (barrelRollSpeed * direction.x, 0f, 0f);
 
-        //     }
-        // }
+            t += Time.deltaTime * rollsPerSeccond;
+
+            if(t >= rollsPerSeccond)
+            {
+                t = rollsPerSeccond;
+            }
+
+            transform.eulerAngles = new Vector3(0,(t*360) * direction.x,0);
+
+            if(t >= rollsPerSeccond)
+            {
+                isRolling = false;
+                transform.eulerAngles = new Vector3(0,0,0);
+                t = 0;
+            }
+        }
     }
     void playerMovement()
     {
@@ -102,14 +114,20 @@ public class Mod_Player : MonoBehaviour
 
         transform.position = transform.position + velocity * Time.deltaTime;
 
-        if(velocity.magnitude >= maxSpeed && !isBeingThrowned)
+        if(velocity.magnitude >= maxSpeed && !isBeingThrowned && !isRolling)
         {
             velocity = velocity.normalized * maxSpeed;
         }
 
-        barrelRoll();}
-
-
+        if(Keyboard.current.shiftKey.wasPressedThisFrame && !isRolling && !isBeingThrowned && canRoll)
+        {
+            if(direction.x == 1 || direction.x == -1)
+            {
+                isRolling = true;
+                
+            }
+        }
+        }
     }
 }
 

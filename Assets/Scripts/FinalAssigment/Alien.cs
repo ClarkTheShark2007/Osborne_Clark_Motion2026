@@ -60,15 +60,15 @@ public class Alien : MonoBehaviour
             }
 
 
-            if(Vector2.Distance(attackPos, playerPos) <= 0.1f)
+            if(Vector2.Distance(attackPos, playerPos) <= 0.1f && !playerScript.isRolling)
             {
                 attackPos = playerPos;
                 playerScript.velocity = Vector3.zero;
+                playerScript.canRoll = false;
                 player.transform.position += (Vector3) ((Vector2)transform.position - playerPos).normalized * 2f * Time.deltaTime;
                 
                 if(Vector2.Distance(playerPos, transform.position) <= 0.1f)
                 {
-                    playerScript.t = 0;
                     beingThrowned = true;
                     playerScript.isBeingThrowned = true;
                     playerScript.velocity = ((Vector3)throwPostion - player.transform.position).normalized * throwSpeed;
@@ -104,7 +104,7 @@ public class Alien : MonoBehaviour
             if(playerScript.isBeingThrowned == false)
             {
                 beingThrowned = false;
-                //playerScript.isBeingThrowned = false;
+                playerScript.canRoll = true;
             }
         }
     }

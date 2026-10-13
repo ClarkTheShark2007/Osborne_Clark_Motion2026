@@ -397,8 +397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 371527ac89a1c2a48b7418b82b17cb74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mod_Player
-  maxSpeed: 4
-  rollSpeed: 45
+  maxSpeed: 3.5
+  barrelRollSpeed: 4.5
   velocity: {x: 0, y: 0, z: 0}
   accelerationReacher: 1
   decelrationReacher: 2
@@ -406,8 +406,10 @@ MonoBehaviour:
   timeToReachMaxAcceleration: 0
   timeToCompleteStop: 0
   isRolling: 0
-  totalTimeForCompleteRoll: 0
-  amountOfRolls: 2
+  canRoll: 1
+  amountOfSpins: 2
+  amountOfBarrelRolls: 2
+  spinsPerSeccond: 0.5
   rollsPerSeccond: 1
   t: 0
 --- !u!1 &1821658492
