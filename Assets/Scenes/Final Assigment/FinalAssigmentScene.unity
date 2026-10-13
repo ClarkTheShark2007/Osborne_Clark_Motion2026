@@ -295,17 +295,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3afb80d96c64943a17bf006dea162b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Alien
-  player: {fileID: 1609450065}
   searchChargeTimer: 1
   maxSpeed: 6
   totalSearchTime: 3.5
+  totalMovementTime: 0
   distanceForAttack: 5
   attackSpeed: 4
-  throwRadius: 7
-  throwSpeed: 7
-  totalMovementTime: 0
   attackPos: {x: 0, y: 0}
-  attackVelocity: {x: 0, y: 0}
+  throwRadius: 7
+  throwSpeed: 6
+  player: {fileID: 1609450065}
 --- !u!212 &1435017294
 SpriteRenderer:
   serializedVersion: 2
@@ -398,20 +397,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mod_Player
   maxSpeed: 3.5
-  barrelRollSpeed: 4.5
   velocity: {x: 0, y: 0, z: 0}
   accelerationReacher: 1
   decelrationReacher: 2
-  isBeingThrowned: 0
-  timeToReachMaxAcceleration: 0
-  timeToCompleteStop: 0
+  barrelRollSpeed: 4.5
   isRolling: 0
   canRoll: 1
-  amountOfSpins: 2
   amountOfBarrelRolls: 2
-  spinsPerSeccond: 0.5
   rollsPerSeccond: 1
-  t: 0
+  isBeingThrowned: 0
+  amountOfSpins: 2
+  spinsPerSeccond: 0.5
 --- !u!1 &1821658492
 GameObject:
   m_ObjectHideFlags: 0

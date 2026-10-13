@@ -17,7 +17,6 @@ public class Alien : MonoBehaviour
     public Vector2 attackPos;
 
     //Throwing State Varibles
-    public float throwRadius;
     public float throwSpeed;
     Vector2 throwPostion;
     bool beingThrowned;
@@ -45,7 +44,7 @@ public class Alien : MonoBehaviour
         if(t >= searchChargeTimer)
         {
             int angle = Random.Range(0, 361);
-            throwPostion = (Vector2) transform.position + new Vector2(Mathf.Cos((angle) * Mathf.Deg2Rad), Mathf.Sin((angle) * Mathf.Deg2Rad)) * throwRadius;
+            throwPostion = (Vector2) transform.position + new Vector2(Mathf.Cos((angle) * Mathf.Deg2Rad), Mathf.Sin((angle) * Mathf.Deg2Rad));
             playerPos = player.transform.position;
             velocity = (playerPos - (Vector2) transform.position).normalized * maxSpeed;
             t = 0;
